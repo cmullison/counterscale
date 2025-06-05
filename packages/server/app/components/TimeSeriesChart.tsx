@@ -172,21 +172,21 @@ export default function TimeSeriesChart({
                 <Area
                     yAxisId="count"
                     dataKey="views"
-                    stroke="#F46A3D"
+                    stroke="#4235f9"
                     strokeWidth="2"
-                    fill="#F99C35"
+                    fill="#3573f9"
                 />
                 <Area
                     yAxisId="count"
                     dataKey="visitors"
-                    stroke="#F46A3D"
+                    stroke="#4235f9"
                     strokeWidth="2"
-                    fill="#f96d3e"
+                    fill="#3573f9"
                 />
                 <Line
                     yAxisId="bounceRate"
                     dataKey="bounceRate"
-                    stroke="#56726C"
+                    stroke="#3573f9"
                     strokeWidth="2"
                     dot={false}
                 />

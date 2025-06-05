@@ -123,7 +123,7 @@ export default function App() {
 
     return (
         <div className="mt-0 sm:mt-4">
-            <header className="border-b-2 mb-8 py-2">
+            {/* <header className="border-b-2 mb-8 py-2">
                 <nav className="flex justify-between items-center">
                     <div className="flex items-center">
                         <a href="/" className="text-lg font-bold">
@@ -158,12 +158,12 @@ export default function App() {
                         </a>
                     </div>
                 </nav>
-            </header>
+            </header> */}
             <main role="main" className="w-full">
                 <Outlet />
             </main>
 
-            <footer className="py-4 flex justify-end text-s">
+            {/*  <footer className="py-4 flex justify-end text-s">
                 <div>
                     Version{" "}
                     {data.version ? (
@@ -179,7 +179,7 @@ export default function App() {
                         "unknown"
                     )}
                 </div>
-            </footer>
+            </footer> */}
         </div>
     );
 }

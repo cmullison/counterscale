@@ -22,7 +22,7 @@
         "dev": "react-router dev",
         "build": "react-router build",
         "preview": "wrangler dev --var VERSION:`git rev-parse HEAD`",
-        "deploy": "wrangler deploy --var VERSION:`git rev-parse HEAD`",
+        "deploy": "react-router build && wrangler deploy --var VERSION:`git rev-parse HEAD`",
         "lint": "eslint .",
         "test": "TZ=EST vitest run",
         "test-ci": "TZ=EST vitest run --coverage",
