@@ -7,6 +7,14 @@ export type TrackPageviewOpts = {
     referrer?: string;
 };
 
+export type TrackEventOpts = {
+    name: string;
+    properties?: Record<string, any>;
+    category?: string;
+    target?: string;
+    value?: number;
+};
+
 export function autoTrackPageviews(client: Client) {
     const cleanupFn = instrumentHistoryBuiltIns(() => {
         void trackPageview(client);
@@ -34,7 +42,7 @@ function getHostnameAndPath(url: string) {
     const a = document.createElement("a");
     a.href = url;
 
-    const hostname = a.protocol + "//" + a.hostname;
+    const hostname = a.protocol + "//" + a.host;
     const path = a.pathname;
 
     return { hostname, path };
@@ -86,6 +94,35 @@ export async function trackPageview(
         // If cache check fails, we proceed without hit count data
         // The collect endpoint will handle the missing parameters
     }
+
+    makeRequest(client.reporterUrl, d);
+}
+
+export async function trackEvent(
+    client: Client,
+    opts: TrackEventOpts,
+) {
+    const canonical = getCanonicalUrl();
+    const location = canonical ?? window.location;
+
+    if (location.host === "" && navigator.userAgent.indexOf("Electron") < 0) {
+        return;
+    }
+
+    const url = location.pathname + location.search || "/";
+    const { hostname, path } = getHostnameAndPath(url);
+
+    const d = {
+        p: path,
+        h: hostname,
+        r: "", // events don't have referrers
+        sid: client.siteId,
+        en: opts.name, // event name
+        ep: opts.properties ? JSON.stringify(opts.properties) : "", // event properties
+        ec: opts.category || "", // event category
+        et: opts.target || "", // event target
+        ev: opts.value?.toString() || "", // event value
+    };
 
     makeRequest(client.reporterUrl, d);
 }

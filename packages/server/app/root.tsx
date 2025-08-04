@@ -103,9 +103,7 @@ export const Layout = ({ children = [] }: { children: React.ReactNode }) => {
                 <Links />
             </head>
             <body>
-                <div className="container mx-auto pl-2 pr-2 sm:pl-8 sm:pr-8">
-                    {children}
-                </div>
+                <div className="mx-auto">{children}</div>
                 <ScrollRestoration />
                 <Scripts />
                 <script
@@ -122,7 +120,7 @@ export default function App() {
     const data = useLoaderData<typeof loader>();
 
     return (
-        <div className="mt-0 sm:mt-4">
+        <div className="mt-2 mx-2 lg:mx-4 bg-transparent sm:mt-4">
             {/* <header className="border-b-2 mb-8 py-2">
                 <nav className="flex justify-between items-center">
                     <div className="flex items-center">
@@ -159,7 +157,7 @@ export default function App() {
                     </div>
                 </nav>
             </header> */}
-            <main role="main" className="w-full">
+            <main role="main" className="bg-transparent w-full">
                 <Outlet />
             </main>
 

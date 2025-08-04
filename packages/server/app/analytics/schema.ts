@@ -25,6 +25,12 @@ export const ColumnMappings = {
     browserVersion: "blob9",
     deviceType: "blob10",
 
+    // Event tracking columns
+    eventName: "blob11",
+    eventProperties: "blob12",
+    eventCategory: "blob13",
+    eventTarget: "blob14",
+
     /**
      * doubles
      */
@@ -37,4 +43,7 @@ export const ColumnMappings = {
 
     // this record is the bounce value
     bounce: "double3",
+
+    // Event tracking doubles
+    eventValue: "double4",
 } as const;

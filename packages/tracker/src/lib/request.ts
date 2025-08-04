@@ -3,7 +3,13 @@ type CollectRequestParams = {
     h: string; // host
     r: string; // referrer
     sid: string; // siteId
-    hits?: string; // hit count (1=first visit, 2=anti-bounce, 3=regular)
+    ht?: string; // hit count (1=first visit, 2=anti-bounce, 3=regular)
+    // Event tracking parameters
+    en?: string; // event name
+    ep?: string; // event properties (JSON string)
+    ec?: string; // event category
+    et?: string; // event target
+    ev?: string; // event value
 };
 
 const REQUEST_TIMEOUT = 1000;

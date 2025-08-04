@@ -164,11 +164,14 @@ export default function Dashboard() {
     const userTimezone = getUserTimezone();
 
     return (
-        <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+        <div
+            className="bg-transparent"
+            style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}
+        >
             <div className="w-full mb-4 flex gap-4 flex-wrap">
                 <div className="lg:basis-1/5-gap-4 sm:basis-1/4-gap-4 basis-1/2-gap-4">
                     <Select
-                        defaultValue={data.siteId}
+                        defaultValue="mulls-io"
                         onValueChange={(site) => changeSite(site)}
                     >
                         <SelectTrigger>

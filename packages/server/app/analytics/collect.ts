@@ -193,6 +193,12 @@ export function collectRequestHandler(
         browserVersion: browserVersion,
         deviceModel: parsedUserAgent.getDevice().model,
         deviceType: getDeviceTypeFromDevice(parsedUserAgent.getDevice()),
+        // event tracking data
+        eventName: params.en,
+        eventProperties: params.ep,
+        eventCategory: params.ec,
+        eventTarget: params.et,
+        eventValue: params.ev ? parseFloat(params.ev) : undefined,
     };
 
     // NOTE: location is derived from Cloudflare-specific request properties
@@ -247,11 +253,16 @@ interface DataPoint {
     browserVersion?: string;
     deviceModel?: string;
     deviceType?: string;
+    eventName?: string;
+    eventProperties?: string;
+    eventCategory?: string;
+    eventTarget?: string;
 
     // doubles
     newVisitor: number;
     newSession: number;
     bounce: number;
+    eventValue?: number;
 }
 
 // NOTE: Cloudflare Analytics Engine has limits on total number of bytes, number of fields, etc.
@@ -274,8 +285,12 @@ export function writeDataPoint(
             data.siteId || "", // blob8
             data.browserVersion || "", // blob9
             data.deviceType || "", // blob10
+            data.eventName || "", // blob11
+            data.eventProperties || "", // blob12
+            data.eventCategory || "", // blob13
+            data.eventTarget || "", // blob14
         ],
-        doubles: [data.newVisitor || 0, data.newSession || 0, data.bounce],
+        doubles: [data.newVisitor || 0, data.newSession || 0, data.bounce, data.eventValue || 0],
     };
 
     if (!analyticsEngine) {

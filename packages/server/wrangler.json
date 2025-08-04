@@ -10,5 +10,8 @@
             "binding": "WEB_COUNTER_AE",
             "dataset": "metricsDataset"
         }
-    ]
+    ],
+    "vars": {
+        "API_SECRET": "your-shared-secret-key-here"
+    }
 }
